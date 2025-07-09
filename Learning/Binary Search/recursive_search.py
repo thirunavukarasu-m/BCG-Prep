@@ -1,8 +1,9 @@
-li = [-4, -3, -2, -1, 0, 2,3,5,6,7,8]
+li = [-5,-3,-2,1,3,5]
 
 
 def binary_search(li, target, left, right):
-    mid = (left + right) // 2
+    # mid = (left + right) // 2
+    mid = left + (right - left) // 2
     if left > right:
         return -1
     if li[mid] == target:

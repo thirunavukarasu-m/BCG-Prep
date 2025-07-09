@@ -4,7 +4,8 @@ def binary_search(li, target):
     left = 0
     right = len(li) - 1
     while left <= right:
-        mid = (left + right) // 2
+        # mid = (left + right) // 2
+        mid = left + (right - left) // 2
         if li[mid] == target:
             return mid
         elif li[mid] > target:
