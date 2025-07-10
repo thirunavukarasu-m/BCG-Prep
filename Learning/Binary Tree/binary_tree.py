@@ -58,4 +58,39 @@ def post_order(node):
     post_order(node.right)
     print(node)
     
-post_order(a)
+# post_order(a)
+
+
+
+def pre_order_iterative(node):
+    stack = [node]
+    while stack:
+        node = stack.pop()
+        
+        if node.right:
+            stack.append(node.right)
+        if node.left:
+            stack.append(node.left)
+        print(node)
+        
+# pre_order_iterative(a)
+
+
+# The above functions are DFS:
+# 
+# BFS
+
+from collections import deque
+
+def bfs(node):
+    queue = deque()
+    queue.append(node)
+    while queue:
+        node = queue.popleft()
+        print(node)
+        if node.left:
+            queue.append(node.left)
+        if node.right:
+            queue.append(node.right)
+    
+bfs(a)
