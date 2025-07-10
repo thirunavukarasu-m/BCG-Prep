@@ -11,6 +11,7 @@ heap = []
 for key, value in counter.items():
     print(key, value)
     heapq.heappush(heap, (value, key))
+    # First it'll sort by value, if there are ties it'll look at key.
 
 print(heap)
 # [(2, 3), (4, 5), (3, 4)]
