@@ -48,3 +48,8 @@ print(heapsort([9,2,43,4,45,4356,46,46,75,7,75]))
 
 heapq.heappushpop(A, 99)
 print(A)
+
+
+# Peek
+# O(1)
+print(A[0])
