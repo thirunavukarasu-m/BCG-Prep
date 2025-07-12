@@ -26,6 +26,8 @@ https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
 '''
 
 def best_time(arr):
+    if not arr:
+        return 0
     max_profit = 0
     buy = arr[0]
     for price in arr:
