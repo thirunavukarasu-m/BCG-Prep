@@ -4,9 +4,12 @@ import heapq
 
 C = [-5, 4, 2, 1, 7, 0, 3]
 
+# This is Time O(N log N) and Space O(N)
 heap = []
-
 for i in C:
     heapq.heappush(heap, i)
-    
-print(heap)
+
+# This is Time O(N) and Space O(1)
+# heapify method internally uses the Floyd’s algorithm to build the heap bottom-up.
+heapq.heapify(C)
+print(C)
