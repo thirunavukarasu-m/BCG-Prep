@@ -34,11 +34,14 @@ There are no self edges.
 https://leetcode.com/problems/find-if-path-exists-in-graph/description/
 '''
 
-from collections import defaultdict
+from collections import defaultdict, deque
 class Solution:
     def __init__(self):
         self.graph = defaultdict(list)
         self.seen = set()
+        self.stack = []
+        self.queue = deque()
+        
     def create_graph(self, edges):
         for i, j in edges:
             self.graph[i].append(j)
@@ -57,10 +60,36 @@ class Solution:
                     return True
         return False
     
-    def validPath(self, n, edges, source, destination):
+    def dfs_iterative(self, source, destination):
+        if source == destination:
+            return True
+        
+        self.stack.append(source)
+        
+        while self.stack:
+            popped = self.stack.pop()
+            
+            if popped == destination:
+                return True
+            if popped not in self.seen:
+                self.seen.add(popped)
+                for node in self.graph[popped]:
+                    self.stack.append(node)
+        return False
+        
+    def validPath_re(self, n, edges, source, destination):
         self.create_graph(edges)
         return self.dfs_recursion(source, destination)
     
+    def validPath_it(self, n, edges, source, destination):
+        self.create_graph(edges)
+        return self.dfs_iterative(source, destination)
+    
     
 s = Solution()
-print(s.validPath(3,[[0,1],[1,2],[2,0]], 0, 2))
+# print(s.validPath_it(3,[[0,1],[1,2],[2,0]], 0, 10))
+# print(s.validPath_re(10,[[4,3],[1,4],[4,8],[1,7],[6,4],[4,2],[7,4],[4,0],[0,9],[5,4]], 5 ,9))
+print(s.validPath_it(10,[[4,3],[1,4],[4,8],[1,7],[6,4],[4,2],[7,4],[4,0],[0,9],[5,4]], 5 ,9))
+
+
+
