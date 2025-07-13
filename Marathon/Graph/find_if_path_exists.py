@@ -76,6 +76,23 @@ class Solution:
                 for node in self.graph[popped]:
                     self.stack.append(node)
         return False
+    
+    def bfs(self, source, destination):
+        if source == destination:
+            return True
+            
+        self.queue.append(source)
+        while self.queue:
+            popped = self.queue.popleft()
+            if popped == destination:
+                return True
+            
+            if popped not in self.seen:
+                self.seen.add(popped)
+                for node in self.graph[popped]:
+                    self.queue.append(node)
+                    
+        return False
         
     def validPath_re(self, n, edges, source, destination):
         self.create_graph(edges)
@@ -85,11 +102,16 @@ class Solution:
         self.create_graph(edges)
         return self.dfs_iterative(source, destination)
     
+    def validPath_bfs(self, n, edges, source, destination):
+        self.create_graph(edges)
+        return self.bfs(source, destination)
     
 s = Solution()
 # print(s.validPath_it(3,[[0,1],[1,2],[2,0]], 0, 10))
 # print(s.validPath_re(10,[[4,3],[1,4],[4,8],[1,7],[6,4],[4,2],[7,4],[4,0],[0,9],[5,4]], 5 ,9))
-print(s.validPath_it(10,[[4,3],[1,4],[4,8],[1,7],[6,4],[4,2],[7,4],[4,0],[0,9],[5,4]], 5 ,9))
+# print(s.validPath_it(10,[[4,3],[1,4],[4,8],[1,7],[6,4],[4,2],[7,4],[4,0],[0,9],[5,4]], 5 ,9))
+print(s.validPath_bfs(10,[[4,3],[1,4],[4,8],[1,7],[6,4],[4,2],[7,4],[4,0],[0,9],[5,4]], 5 ,9))
+
 
 
 
