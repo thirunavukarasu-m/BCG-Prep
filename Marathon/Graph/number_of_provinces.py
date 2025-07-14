@@ -112,7 +112,6 @@ def findCircleNum(isConnected):
     seen = set()
     def dfs(i):
         seen.add(i)
-        
         for j in range(n):
             if isConnected[i][j] == 1 and j not in seen:
                 dfs(j)
@@ -130,3 +129,35 @@ print(findCircleNum([
     [0, 1, 1, 1],
     [1, 0, 1, 1]
 ]))  # Output: 1
+
+# used adjacent list, This works as well.
+data = [
+    [1, 0, 0, 1],
+    [0, 1, 1, 0],
+    [0, 1, 1, 1],
+    [1, 0, 1, 1]
+]
+dd = defaultdict(list)
+n = len(data)
+seen = set()
+provinces = 0
+for i in range(n):
+    for j in range(n):
+        if data[i][j] == 1:
+            dd[i].append(j)
+print(dict(dd))
+
+
+def dfs(node):
+    if node in seen:
+        return
+    seen.add(node)
+    for n_node in dd[node]:
+        dfs(n_node)
+    return
+    
+for node in dd:
+    if node not in seen:
+        provinces += 1
+        dfs(node)
+print(provinces)
