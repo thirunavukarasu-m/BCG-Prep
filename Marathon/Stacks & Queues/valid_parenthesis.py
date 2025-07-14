@@ -54,3 +54,23 @@ def valid_parenthesis(s):
     return True if not stk else False
         
 print(valid_parenthesis("("))
+
+
+def valid_parenthesis_2(s):
+    if len(s) < 2:
+        return False
+    stk = []
+    cache = {')' : '(', '}': '{', ']': '['}
+    i = 0
+
+    while i < len(s):
+        if s[i] not in cache:
+          stk.append(s[i])
+        else:
+            if (cache[s[i]] and not stk) or (cache[s[i]] != stk.pop()):
+                return False
+        i += 1
+        
+    return True if not stk else False
+    
+print(valid_parenthesis_2(""))
