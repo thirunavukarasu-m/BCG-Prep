@@ -28,8 +28,10 @@ def merge_intervals(arr):
             stack.append([i,j])
             continue
         if stack[-1][1] >= i:
-            popped = stack.pop()
-            stack.append([min(popped[0], i), max(popped[1],j)])
+            # Instead of this, we can directly overwrite the data in last place.
+            # popped = stack.pop()
+            # stack.append([min(popped[0], i), max(popped[1],j)])
+            stack[-1] = [min(stack[-1][0], i), max(stack[-1][1], j)]
         else:
             stack.append([i,j])
     
