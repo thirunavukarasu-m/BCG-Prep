@@ -34,7 +34,6 @@ https://leetcode.com/problems/set-matrix-zeroes/description/
 
 def set_zeroes(matrix):
     indexes = []
-    seen = set()
     m,n = len(matrix), len(matrix[0])
     RIGHT_WALL, DOWN_WALL, LEFT_WALL, UP_WALL = n,m,-1,-1
     
