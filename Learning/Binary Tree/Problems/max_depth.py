@@ -42,15 +42,10 @@ C.right = E
 C.left = D
 
 
-def max_depth(root):
-    if not root:
+def max_depth(node):
+    if not node:
         return 0
-        
-    left = max_depth(root.left)
-    right = max_depth(root.right)
-    
-    return 1 + max(left, right)
-
-print(max_depth(D))
+    return 1 + max(max_depth(node.left), max_depth(node.right))
+print(max_depth(A))
 
 
